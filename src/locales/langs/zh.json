@@ -226,6 +226,10 @@
       "role": "角色管理",
       "userCenter": "个人中心",
       "menu": "菜单管理"
+    },
+    "customers": {
+      "title": "客户管理",
+      "list": "客户列表"
     }
   },
   "table": {

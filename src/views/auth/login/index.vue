@@ -218,10 +218,10 @@
       if (!valid) return
 
       // 拖拽验证
-      if (!isPassing.value) {
-        isClickPass.value = true
-        return
-      }
+      // if (!isPassing.value) {
+      //   isClickPass.value = true
+      //   return
+      // }
 
       loading.value = true
 
@@ -233,6 +233,7 @@
         password
       })
 
+      console.log('token', token)
       // 验证token
       if (!token) {
         throw new Error('Login failed - no token received')

@@ -170,5 +170,25 @@ export const asyncRoutes: AppRouteRecord[] = [
         }
       }
     ]
+  },
+  {
+    path: '/customers',
+    name: 'Customers',
+    component: RoutesAlias.Customers,
+    meta: {
+      title: 'menus.customers.title',
+      icon: '&#xe715;'
+    },
+    children: [
+      {
+        path: '/customers',
+        name: 'Customers',
+        component: RoutesAlias.Customers,
+        meta: {
+          title: 'menus.customers.list',
+          keepAlive: true
+        }
+      }
+    ]
   }
 ]
