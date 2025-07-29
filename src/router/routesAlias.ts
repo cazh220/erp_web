@@ -27,5 +27,5 @@ export enum RoutesAlias {
   Menu = '/system/menu', // 菜单
 
   // 客户管理
-  Customers = '/customers' // 客户管理
+  Customers = '/customers/customers_list' // 客户管理
 }
