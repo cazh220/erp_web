@@ -33,12 +33,12 @@ export interface UseTableConfig<
     /** 列配置工厂函数 */
     columnsFactory?: () => ColumnOption<T>[]
     /** 自定义分页字段映射 */
-    paginationKey?: {
-      /** 当前页码字段名，默认为 'current' */
-      current?: string
-      /** 每页条数字段名，默认为 'size' */
-      size?: string
-    }
+    // paginationKey?: {
+    //   /** 当前页码字段名，默认为 'current' */
+    //   current?: string
+    //   /** 每页条数字段名，默认为 'size' */
+    //   size?: string
+    // }
   }
 
   // 🎯 数据处理

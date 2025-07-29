@@ -90,4 +90,31 @@ declare namespace Api {
       userRoles: string[]
     }
   }
+
+  namespace Customer {
+    /** 客户列表数据 */
+    interface CustomerListData {
+      records: CustomerListItem[]
+      current: number
+      size: number
+      total: number
+    }
+
+    interface CustomerListItem {
+      id: number
+      name: string
+      phone: string
+      email: string
+      address: string
+      createTime: string
+      updateTime: string
+      status: '1' | '2' | '3' | '4' // 1: 正常 2: 停用 3: 删除 4: 注销
+    }
+
+    /** 客户列表参数 */
+    interface ListParams {
+      name: string
+      page: number
+    }
+  }
 }

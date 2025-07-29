@@ -11,7 +11,7 @@
       <!-- 表格头部 -->
       <ArtTableHeader v-model:columns="columnChecks" @refresh="refresh">
         <template #left>
-          <ElButton @click="showDialog('add')">新增用户</ElButton>
+          <ElButton @click="showDialog('add')">新增客户</ElButton>
         </template>
       </ArtTableHeader>
 
@@ -30,12 +30,12 @@
       </ArtTable>
 
       <!-- 用户弹窗 -->
-      <UserDialog
+      <!-- <UserDialog
         v-model:visible="dialogVisible"
         :type="dialogType"
         :user-data="currentUserData"
         @submit="handleDialogSubmit"
-      />
+      /> -->
     </ElCard>
   </div>
 </template>
@@ -45,15 +45,15 @@
   import { ACCOUNT_TABLE_DATA } from '@/mock/temp/formData'
   import { ElMessageBox, ElMessage, ElTag } from 'element-plus'
   import { useTable } from '@/composables/useTable'
-  import { UserService } from '@/api/usersApi'
+  import { CustomerService } from '@/api/customerApi'
 //   import UserSearch from './modules/user-search.vue'
-  import UserDialog from './modules/user-dialog.vue'
+  // import UserDialog from './modules/user-dialog.vue'
 
   defineOptions({ name: 'User' })
 
   type UserListItem = Api.User.UserListItem
   const { width } = useWindowSize()
-  const { getUserList } = UserService
+  const { getCustomerList } = CustomerService
 
   // 弹窗相关
   const dialogType = ref<Form.DialogType>('add')
@@ -89,8 +89,8 @@
     tableData: data,
     isLoading: loading,
     paginationState: pagination,
-    searchData: getDataByPage,
-    resetSearch: resetSearchParams,
+    // searchData: getDataByPage,
+    // resetSearch: resetSearchParams,
     onPageSizeChange: handleSizeChange,
     onCurrentPageChange: handleCurrentChange,
     refreshAll: refresh,
@@ -100,14 +100,11 @@
   } = useTable<UserListItem>({
     // 核心配置
     core: {
-      apiFn: getUserList,
-      apiParams: {
-        current: 1,
-        size: 20,
-        name: '',
-        phone: '',
-        address: undefined
-      },
+      apiFn: getCustomerList,
+      // apiParams: {
+      //   // name: 'xxx',
+      //   // page: 2
+      // },
       columnsFactory: () => [
         { type: 'selection' }, // 勾选列
         { type: 'index', width: 60, label: '序号' }, // 序号
