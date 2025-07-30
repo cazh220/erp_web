@@ -29,13 +29,13 @@
       >
       </ArtTable>
 
-      <!-- 用户弹窗 -->
-      <!-- <UserDialog
+      <!-- 客户弹窗 -->
+      <CustomerDialog
         v-model:visible="dialogVisible"
         :type="dialogType"
         :user-data="currentUserData"
         @submit="handleDialogSubmit"
-      /> -->
+      />
     </ElCard>
   </div>
 </template>
@@ -46,8 +46,8 @@
   import { ElMessageBox, ElMessage, ElTag } from 'element-plus'
   import { useTable } from '@/composables/useTable'
   import { CustomerService } from '@/api/customerApi'
-//   import UserSearch from './modules/user-search.vue'
-  // import UserDialog from './modules/user-dialog.vue'
+  //   import UserSearch from './modules/user-search.vue'
+  import CustomerDialog from './modules/customer-dialog.vue'
 
   defineOptions({ name: 'User' })
 
@@ -101,10 +101,10 @@
     // 核心配置
     core: {
       apiFn: getCustomerList,
-      // apiParams: {
-      //   // name: 'xxx',
-      //   // page: 2
-      // },
+      apiParams: {
+        name: '示例客户',
+        page: 1
+      },
       columnsFactory: () => [
         { type: 'selection' }, // 勾选列
         { type: 'index', width: 60, label: '序号' }, // 序号
@@ -114,14 +114,33 @@
           label: '用户名',
           minWidth: width.value < 500 ? 220 : '',
           formatter: (row) => {
+            console.log('row', row)
             return h('div', { class: 'user', style: 'display: flex; align-items: center' }, [
               h('img', { class: 'avatar', src: row.avatar }),
               h('div', {}, [
-                h('p', { class: 'user-name' }, row.userName),
-                h('p', { class: 'email' }, row.userEmail)
+                h('p', { class: 'user-name' }, row.name),
+                h('p', { class: 'email' }, row.contact_email || '暂无邮箱')
               ])
             ])
           }
+        },
+        {
+          prop: 'company_name',
+          label: '公司名称',
+          minWidth: width.value < 500 ? 220 : '',
+          formatter: (row) => row.company_name || '暂无公司'
+        },
+        {
+          prop: 'country',
+          label: '国家',
+          minWidth: width.value < 500 ? 120 : '',
+          formatter: (row) => row.country || '暂无国家'
+        },
+        {
+          prop: 'city',
+          label: '城市',
+          minWidth: width.value < 500 ? 120 : '',
+          formatter: (row) => row.city || '暂无城市'
         },
         {
           prop: 'userGender',

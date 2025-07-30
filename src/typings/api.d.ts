@@ -82,12 +82,14 @@ declare namespace Api {
       updateBy: string
       updateTime: string
       status: '1' | '2' | '3' | '4' // 1: 在线 2: 离线 3: 异常 4: 注销
-      userName: string
-      userGender: string
-      nickName: string
-      userPhone: string
-      userEmail: string
-      userRoles: string[]
+      name: string
+      gender: string
+      company_name: string
+      country: string
+      city: string
+      phone: string
+      contact_email: string
+      roles: string[]
     }
   }
 
@@ -115,6 +117,16 @@ declare namespace Api {
     interface ListParams {
       name: string
       page: number
+    }
+
+    /** 客户表单数据 */
+    interface CustomerFormData {
+      id?: number
+      name: string
+      phone: string
+      email: string
+      address: string
+      status: '1' | '2' | '3' | '4' // 1: 正常 2: 停用 3: 删除 4: 注销
     }
   }
 }
