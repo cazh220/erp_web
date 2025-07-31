@@ -36,6 +36,13 @@
         :user-data="currentUserData"
         @submit="handleDialogSubmit"
       />
+
+      <!-- 客户详情弹窗 -->
+      <customerDetail
+        v-model:visible="detailVisible"
+        :user-data="currentUserData"
+        @close="detailVisible = false"
+      />
     </ElCard>
   </div>
 </template>
@@ -48,6 +55,7 @@
   import { CustomerService } from '@/api/customerApi'
   //   import UserSearch from './modules/user-search.vue'
   import CustomerDialog from './modules/customer-dialog.vue'
+  import customerDetail from './modules/customer-detail.vue'
 
   defineOptions({ name: 'User' })
 
@@ -58,6 +66,8 @@
   // 弹窗相关
   const dialogType = ref<Form.DialogType>('add')
   const dialogVisible = ref(false)
+  // 详情弹窗相关
+  const detailVisible = ref(false)
   const currentUserData = ref<Partial<UserListItem>>({})
 
   // 选中行
@@ -143,11 +153,56 @@
           formatter: (row) => row.city || '暂无城市'
         },
         {
-          prop: 'userGender',
-          label: '性别',
-          sortable: true,
-          formatter: (row) => row.userGender
+          prop: 'follow_up_status',
+          label: '跟进状态',
+          formatter: (row) => row.follow_up_status
         },
+        {
+          prop: 'follow_up_frequency',
+          label: '跟进频率',
+          formatter: (row) => row.follow_up_frequency || '暂无跟进频率'
+        },
+        {
+          prop: 'level',
+          label: '客户等级',
+          formatter: (row) => row.level
+        },
+        {
+          prop: 'source',
+          label: '客户来源',
+          formatter: (row) => row.source
+        },
+        {
+          prop: 'channel',
+          label: '客户渠道',
+          formatter: (row) => row.channel
+        },
+        {
+          prop: 'benifit_evaluate',
+          label: '客户收益评估',
+          formatter: (row) => row.benifit_evaluate
+        },
+        {
+          prop: 'contact_phone',
+          label: '联系人手机号',
+          formatter: (row) => row.contact_phone
+        },
+        {
+          prop: 'telephone',
+          label: '客户手机号',
+          formatter: (row) => row.telephone
+        },
+        {
+          prop: 'company_url',
+          label: '公司网址',
+          formatter: (row) => row.company_url
+        },
+        {
+          prop: 'intended_product',
+          label: '客户需求产品',
+          formatter: (row) => row.intended_product
+        },
+        { prop: 'userGender', label: '性别', sortable: true, formatter: (row) => row.userGender },
         { prop: 'userPhone', label: '手机号' },
         {
           prop: 'status',
@@ -169,6 +224,10 @@
           fixed: 'right', // 固定列
           formatter: (row) =>
             h('div', [
+              h(ArtButtonTable, {
+                type: 'view',
+                onClick: () => showDialog('detail', row)
+              }),
               h(ArtButtonTable, {
                 type: 'edit',
                 onClick: () => showDialog('edit', row)

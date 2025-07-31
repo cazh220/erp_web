@@ -87,6 +87,16 @@ declare namespace Api {
       company_name: string
       country: string
       city: string
+      follow_up_status: '1' | '2' | '3' | '4' // 1: 正常 2: 停用 3: 删除 4: 注销
+      follow_up_frequency: string
+      level: '1' | '2' | '3' | '4' // 1: 普通客户 2: 重要客户 3: 重点客户 4: 客户群
+      source: '1' | '2' | '3' | '4' // 1: 客户群 2: 客户咨询 3: 客户合作 4: 客户购买
+      channel: '1' | '2' | '3' | '4' // 1: 社交媒体 2: 广告 3: 搜索引擎 4: 其他
+      benifit_evaluate: '1' | '2' | '3' | '4' // 1: 无 2: 有
+      contact_phone: string
+      telephone: string
+      company_url: string
+      intended_product: string
       phone: string
       contact_email: string
       roles: string[]
