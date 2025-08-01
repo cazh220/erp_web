@@ -38,7 +38,7 @@
       />
 
       <!-- 客户详情弹窗 -->
-      <customerDetail
+      <CustomerDetail
         v-model:visible="detailVisible"
         :user-data="currentUserData"
         @close="detailVisible = false"
@@ -55,7 +55,7 @@
   import { CustomerService } from '@/api/customerApi'
   //   import UserSearch from './modules/user-search.vue'
   import CustomerDialog from './modules/customer-dialog.vue'
-  import customerDetail from './modules/customer-detail.vue'
+  import CustomerDetail from './modules/customer-detail.vue'
 
   defineOptions({ name: 'User' })
 
@@ -226,7 +226,7 @@
             h('div', [
               h(ArtButtonTable, {
                 type: 'view',
-                onClick: () => showDialog('detail', row)
+                onClick: () => showDetailDialog('detail', row)
               }),
               h(ArtButtonTable, {
                 type: 'edit',
@@ -286,6 +286,20 @@
     currentUserData.value = row || {}
     nextTick(() => {
       dialogVisible.value = true
+    })
+  }
+
+  /**
+   * 显示客户详情弹窗
+   * @param type 
+   * @param row 
+   */
+  const showDetailDialog = (type: Form.DialogType, row?: UserListItem): void => {
+    console.log('打开弹窗:', { type, row })
+    dialogType.value = type
+    currentUserData.value = row || {}
+    nextTick(() => {
+      detailVisible.value = true
     })
   }
 
