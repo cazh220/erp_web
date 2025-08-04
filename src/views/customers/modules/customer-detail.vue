@@ -34,15 +34,17 @@
         {{ userData.channel }}
       </el-descriptions-item>
       <el-descriptions-item label="客户收益评估">
-        {{ userData.evaluation }}
+        {{ userData.benifit_evaluate }}
       </el-descriptions-item>
       <el-descriptions-item label="固定电话">
         {{ userData.telephone }}
       </el-descriptions-item>
       <el-descriptions-item label="公司网址">
-        {{ userData.companyWebsite }}
+        {{ userData.company_url }}
       </el-descriptions-item>
-
+      <el-descriptions-item label="客户意向产品">
+        {{ userData.intention_product }}
+      </el-descriptions-item>
       <el-descriptions-item label="客户更新时间">
         {{ userData.updateTime }}
       </el-descriptions-item>

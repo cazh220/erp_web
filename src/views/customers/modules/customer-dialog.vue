@@ -9,10 +9,13 @@
       <ElFormItem label="用户名" prop="username">
         <ElInput v-model="formData.username" />
       </ElFormItem>
-      <ElFormItem label="手机号" prop="phone">
-        <ElInput v-model="formData.phone" />
+      <ElFormItem label="国家" prop="country">
+        <ElInput v-model="formData.country" />
       </ElFormItem>
-      <ElFormItem label="性别" prop="gender">
+      <ElFormItem label="城市" prop="city">
+        <ElInput v-model="formData.city" />
+      </ElFormItem>
+      <!-- <ElFormItem label="性别" prop="gender">
         <ElSelect v-model="formData.gender">
           <ElOption label="男" value="男" />
           <ElOption label="女" value="女" />
@@ -27,7 +30,7 @@
             :label="role.roleName"
           />
         </ElSelect>
-      </ElFormItem>
+      </ElFormItem> -->
     </ElForm>
     <template #footer>
       <div class="dialog-footer">
@@ -75,9 +78,9 @@
   // 表单数据
   const formData = reactive({
     username: '',
-    phone: '',
-    gender: '男',
-    role: [] as string[]
+    country: '',
+    city: ''
+    // role: [] as string[]
   })
 
   // 表单验证规则
@@ -98,12 +101,12 @@
   const initFormData = () => {
     const isEdit = props.type === 'edit' && props.userData
     const row = props.userData
-
+    console.log('row', row.name)
     Object.assign(formData, {
-      username: isEdit ? row.userName || '' : '',
-      phone: isEdit ? row.userPhone || '' : '',
-      gender: isEdit ? row.userGender || '男' : '男',
-      role: isEdit ? (Array.isArray(row.userRoles) ? row.userRoles : []) : []
+      username: isEdit ? row.name || '' : '',
+      country: isEdit ? row.country || '' : '',
+      city: isEdit ? row.city || '' : ''
+      // role: isEdit ? (Array.isArray(row.userRoles) ? row.userRoles : []) : []
     })
   }
 
