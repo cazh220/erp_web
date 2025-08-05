@@ -6,8 +6,11 @@
     align-center
   >
     <ElForm ref="formRef" :model="formData" :rules="rules" label-width="80px">
-      <ElFormItem label="用户名" prop="username">
-        <ElInput v-model="formData.username" />
+      <ElFormItem label="客户名" prop="name">
+        <ElInput v-model="formData.name" />
+      </ElFormItem>
+      <ElFormItem label="城市" prop="city">
+        <el-cascader placeholder="请选择城市" :options="cityOptions" filterable />
       </ElFormItem>
       <ElFormItem label="国家" prop="country">
         <ElInput v-model="formData.country" />
@@ -62,7 +65,275 @@
   const emit = defineEmits<Emits>()
 
   // 角色列表数据
-  const roleList = ref(ROLE_LIST_DATA)
+  const roleLicityOptionsst = ref(ROLE_LIST_DATA)
+  const cityOptions = [
+    {
+      value: 'guide',
+      label: 'Guide',
+      children: [
+        {
+          value: 'disciplines',
+          label: 'Disciplines',
+          children: [
+            {
+              value: 'consistency',
+              label: 'Consistency'
+            },
+            {
+              value: 'feedback',
+              label: 'Feedback'
+            },
+            {
+              value: 'efficiency',
+              label: 'Efficiency'
+            },
+            {
+              value: 'controllability',
+              label: 'Controllability'
+            }
+          ]
+        },
+        {
+          value: 'navigation',
+          label: 'Navigation',
+          children: [
+            {
+              value: 'side nav',
+              label: 'Side Navigation'
+            },
+            {
+              value: 'top nav',
+              label: 'Top Navigation'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      value: 'component',
+      label: 'Component',
+      children: [
+        {
+          value: 'basic',
+          label: 'Basic',
+          children: [
+            {
+              value: 'layout',
+              label: 'Layout'
+            },
+            {
+              value: 'color',
+              label: 'Color'
+            },
+            {
+              value: 'typography',
+              label: 'Typography'
+            },
+            {
+              value: 'icon',
+              label: 'Icon'
+            },
+            {
+              value: 'button',
+              label: 'Button'
+            }
+          ]
+        },
+        {
+          value: 'form',
+          label: 'Form',
+          children: [
+            {
+              value: 'radio',
+              label: 'Radio'
+            },
+            {
+              value: 'checkbox',
+              label: 'Checkbox'
+            },
+            {
+              value: 'input',
+              label: 'Input'
+            },
+            {
+              value: 'input-number',
+              label: 'InputNumber'
+            },
+            {
+              value: 'select',
+              label: 'Select'
+            },
+            {
+              value: 'cascader',
+              label: 'Cascader'
+            },
+            {
+              value: 'switch',
+              label: 'Switch'
+            },
+            {
+              value: 'slider',
+              label: 'Slider'
+            },
+            {
+              value: 'time-picker',
+              label: 'TimePicker'
+            },
+            {
+              value: 'date-picker',
+              label: 'DatePicker'
+            },
+            {
+              value: 'datetime-picker',
+              label: 'DateTimePicker'
+            },
+            {
+              value: 'upload',
+              label: 'Upload'
+            },
+            {
+              value: 'rate',
+              label: 'Rate'
+            },
+            {
+              value: 'form',
+              label: 'Form'
+            }
+          ]
+        },
+        {
+          value: 'data',
+          label: 'Data',
+          children: [
+            {
+              value: 'table',
+              label: 'Table'
+            },
+            {
+              value: 'tag',
+              label: 'Tag'
+            },
+            {
+              value: 'progress',
+              label: 'Progress'
+            },
+            {
+              value: 'tree',
+              label: 'Tree'
+            },
+            {
+              value: 'pagination',
+              label: 'Pagination'
+            },
+            {
+              value: 'badge',
+              label: 'Badge'
+            }
+          ]
+        },
+        {
+          value: 'notice',
+          label: 'Notice',
+          children: [
+            {
+              value: 'alert',
+              label: 'Alert'
+            },
+            {
+              value: 'loading',
+              label: 'Loading'
+            },
+            {
+              value: 'message',
+              label: 'Message'
+            },
+            {
+              value: 'message-box',
+              label: 'MessageBox'
+            },
+            {
+              value: 'notification',
+              label: 'Notification'
+            }
+          ]
+        },
+        {
+          value: 'navigation',
+          label: 'Navigation',
+          children: [
+            {
+              value: 'menu',
+              label: 'Menu'
+            },
+            {
+              value: 'tabs',
+              label: 'Tabs'
+            },
+            {
+              value: 'breadcrumb',
+              label: 'Breadcrumb'
+            },
+            {
+              value: 'dropdown',
+              label: 'Dropdown'
+            },
+            {
+              value: 'steps',
+              label: 'Steps'
+            }
+          ]
+        },
+        {
+          value: 'others',
+          label: 'Others',
+          children: [
+            {
+              value: 'dialog',
+              label: 'Dialog'
+            },
+            {
+              value: 'tooltip',
+              label: 'Tooltip'
+            },
+            {
+              value: 'popover',
+              label: 'Popover'
+            },
+            {
+              value: 'card',
+              label: 'Card'
+            },
+            {
+              value: 'carousel',
+              label: 'Carousel'
+            },
+            {
+              value: 'collapse',
+              label: 'Collapse'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      value: 'resource',
+      label: 'Resource',
+      children: [
+        {
+          value: 'axure',
+          label: 'Axure Components'
+        },
+        {
+          value: 'sketch',
+          label: 'Sketch Templates'
+        },
+        {
+          value: 'docs',
+          label: 'Design Documentation'
+        }
+      ]
+    }
+  ]
 
   // 对话框显示控制
   const dialogVisible = computed({
@@ -77,9 +348,29 @@
 
   // 表单数据
   const formData = reactive({
-    username: '',
+    name: '',
     country: '',
-    city: ''
+    city: '',
+    company_name: '',
+    follow_up_status: 0,
+    follow_up_frequency: '',
+    level: 0,
+    source: 0,
+    channel: 0,
+    benifit_evaluate: 0,
+    contact_email: '',
+    contact_phone: '',
+    telephone: '',
+    company_url: '',
+    company_desc: '',
+    intended_product: '',
+    social_media: '',
+    social_media_contact: '',
+    customer_situation: '',
+    follow_up_time: '',
+    remark: '',
+    is_video_contact: 0,
+    meeting_notes: ''
     // role: [] as string[]
   })
 
